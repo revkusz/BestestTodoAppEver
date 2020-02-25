@@ -11,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -28,7 +29,18 @@ public class User implements Serializable {
     String nev;
 
     @Column
-    String email;
+    String passowrd;
+
+    @Column(columnDefinition = "boolean default true")
+    Boolean enabled;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "role_id")
+    Role role;
+
+   /*TODO ezen gondolkodni kell  @OneToMany(mappedBy = )
+   https://www.baeldung.com/hibernate-many-to-many
+    List<MenuRole> menuRole;*/
 
     @Column(updatable = false)
     @CreationTimestamp
