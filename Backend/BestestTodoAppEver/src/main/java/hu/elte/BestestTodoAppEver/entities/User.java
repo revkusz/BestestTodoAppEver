@@ -26,13 +26,14 @@ public class User implements Serializable {
 
     @Column(unique = true)
     @NotNull
-    String nev;
+    String username;
 
     @Column
+    @NotNull
     String passowrd;
 
-    @Column(columnDefinition = "boolean default true")
-    Boolean enabled;
+    @Column
+    Boolean enabled = Boolean.TRUE;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name= "role_id")

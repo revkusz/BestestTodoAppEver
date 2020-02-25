@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("user")
-public class FelhasznaloController {
+public class UserController {
 
     @GetMapping("")
     public ResponseEntity<Iterable<User>> getAll() {

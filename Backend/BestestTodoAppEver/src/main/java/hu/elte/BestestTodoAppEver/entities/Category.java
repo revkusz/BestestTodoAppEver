@@ -28,10 +28,10 @@ public class Category {
     @Column
     String color;
 
-    @Column(columnDefinition = "boolean default false")
-    Boolean deleted;
+    @Column
+    Boolean deleted = Boolean.FALSE;
 
-    @Column(columnDefinition = "boolean default false")
-    Boolean showAll;
+    @Column
+    Boolean showAll = Boolean.FALSE;
 
 }

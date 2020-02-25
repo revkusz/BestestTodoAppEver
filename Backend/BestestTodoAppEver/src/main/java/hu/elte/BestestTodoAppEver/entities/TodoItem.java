@@ -35,7 +35,7 @@ public class TodoItem {
     User owner;
 
     @Column
-    Boolean deleted;
+    Boolean deleted = Boolean.FALSE;
 
     @Column
     Date doneTime;
