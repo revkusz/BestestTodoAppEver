@@ -1,7 +1,7 @@
 # BestestTodoAppEver
 Alkalmazások fejlesztése beadandó
 
-##Funkcionális követelmények
+## Funkcionális követelmények
 -   az alkalmazásba legyen lehetöség felületen keresztül belépni már meglévö felhasználóval
 -   Az alkalmazásban lehessen tárolni több felhasználó todo elemeit 
 -   Az alkalmazás tudjon todo elemeket több categoriába rendezni melyek lehetnek elöre definiált mindenki által hasnált kategóriák
@@ -10,11 +10,11 @@ vagy a user által létrehozott saját kategório
 -   Legyen admin role mely láthatja a user eket felvehet újabb user-t valamint láthaja a sima userek minden elemét és interaktálhat velük
 -   Az admin tudjon cserélni role-t a felhasználokon
 
-##Nem funkcionális követelmények
+## Nem funkcionális követelmények
 
 Menjen faszán
 
-##Szakterületi fogalomjegyzék
+## Szakterületi fogalomjegyzék
 
 -   [Angular](https://lmgtfy.com/?q=Angular)
 -   [Componensek](https://lmgtfy.com/?q=angular+components)
@@ -25,7 +25,7 @@ Menjen faszán
 -   [Hibernate](https://lmgtfy.com/?q=java+hibernate)
 -   [Authentikáció](https://lmgtfy.com/?q=auth+spring)
 
-##Szerepkörök
+## Szerepkörök
 
 Komáromi Richárd - Backend God, Frontend Trainee
 Sára Márk Róbert - Frontend God, Backend Trainee
