@@ -30,6 +30,11 @@ Menjen faszán
 Komáromi Richárd - Backend God, Frontend Trainee
 Sára Márk Róbert - Frontend God, Backend Trainee
 
+Az alkalmazásban lévö szerepkörök:
+- ROLE_USER a sima hozzá féréshez szükséges enélkül csak a login felületet érheti el valaki
+- ROLE_ADMIN ö hozzáfér mindenhez is. Minden user adatát tudja lekérni és módosítani
+- ROLE_GOD ez csak egy formális role. A Globális GOD usernek a Role-ja jelenleg semmilyen pluszt nem szolgáltat csak bejelentkezést biztosít az alkalmazásba
+
 # Backend fejlesztői környezet
 Az alkalmazás fejlesztéséhez az [IntelliJ Ultimate](https://lmgtfy.com/?q=Angular) -et használjuk.
 A beállításhoz nincsen más szükség csak a gitrepo ból clone ozni a backend projectet és mivel egy intellij
