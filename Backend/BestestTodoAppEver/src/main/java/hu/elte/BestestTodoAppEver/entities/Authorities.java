@@ -1,6 +1,5 @@
 package hu.elte.BestestTodoAppEver.entities;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,13 +12,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Role {
+public class Authorities {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    Long id;
 
-    @Column(unique = true)
-    @NotNull
-    String name;
+    @OneToOne
+    @JoinColumn(name = "username")
+    Users username;
 
+    @Column
+    String authority;
 }

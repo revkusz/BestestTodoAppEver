@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
 
     @Column
@@ -23,7 +23,7 @@ public class Category {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
-    User owner;
+    Users owner;
 
     @Column
     String color;

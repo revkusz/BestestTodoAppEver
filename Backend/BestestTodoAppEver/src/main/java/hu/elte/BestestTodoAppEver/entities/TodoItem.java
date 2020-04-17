@@ -1,5 +1,6 @@
 package hu.elte.BestestTodoAppEver.entities;
 
+import hu.elte.BestestTodoAppEver.dataTransferObjects.TodoItemDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +18,7 @@ import java.util.Date;
 public class TodoItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     Long id;
 
     @Column
@@ -32,7 +33,7 @@ public class TodoItem {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
-    User owner;
+    Users owner;
 
     @Column
     Boolean deleted = Boolean.FALSE;
@@ -43,4 +44,5 @@ public class TodoItem {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     Category category;
+
 }

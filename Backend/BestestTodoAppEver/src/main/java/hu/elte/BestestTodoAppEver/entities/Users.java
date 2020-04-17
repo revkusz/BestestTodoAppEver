@@ -18,37 +18,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class User implements Serializable {
+public class Users implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
-
     @Column(unique = true)
     @NotNull
     String username;
 
     @Column
     @NotNull
-    String passowrd;
+    String password;
 
     @Column
     Boolean enabled = Boolean.TRUE;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name= "role_id")
-    Role role;
-
-   /*TODO ezen gondolkodni kell  @OneToMany(mappedBy = )
-   https://www.baeldung.com/hibernate-many-to-many
-    List<MenuRole> menuRole;*/
-
-    @Column(updatable = false)
-    @CreationTimestamp
-    private LocalDateTime created_at;
-
-    @Column
-    @UpdateTimestamp
-    private LocalDateTime updated_at;
 
 }
