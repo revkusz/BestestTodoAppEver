@@ -46,6 +46,14 @@ Mavennel az alábbi parancsal lehet futtatni az alkalmazást
 `mvn spring-boot:run`
 
 # Adatbázis terv
+UML Diagram az adadtbázis strukturáról
+![uml diagram](https://github.com/revkusz/BestestTodoAppEver/blob/master/docRes/Screenshot_7.png)
+
+Táblák: 
+- USERS ebben a táblában tároljuk a felhasználó neveket és a jelszavakat hashelve
+- AUTHORITIES Ebben a táblában tároljuk a ROLE okat a felhasználókhoz
+- TODO_ITEM Ebben a táblába vannak tárolva a todo elemek
+- CATEGORIES Ebben a táblában vannak tárolva a todo item-ek kategóriái 
 
 # Végpontok
 ## User végpontok
