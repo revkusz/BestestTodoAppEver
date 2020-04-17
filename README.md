@@ -53,7 +53,7 @@ Táblák:
 - USERS ebben a táblában tároljuk a felhasználó neveket és a jelszavakat hashelve
 - AUTHORITIES Ebben a táblában tároljuk a ROLE okat a felhasználókhoz
 - TODO_ITEM Ebben a táblába vannak tárolva a todo elemek
-- CATEGORIES Ebben a táblában vannak tárolva a todo item-ek kategóriái 
+- CATEGORY Ebben a táblában vannak tárolva a todo item-ek kategóriái 
 
 # Végpontok
 ## User végpontok
