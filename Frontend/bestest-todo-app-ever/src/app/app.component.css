@@ -1,0 +1,23 @@
+
+  .asd {
+    text-align: center;
+  }
+
+  .main-footer {
+    background-color: rgb(66, 66, 66);
+    color: white;
+    font-size: 15px;
+    bottom: 0px;
+    position:fixed;
+    width: 100%;
+  }
+
+  div.inline { 
+    float:left;
+    margin-right: 12%;
+  }
+  
+  .leftmost {
+    float: left;
+    margin-right: 0;
+  }

@@ -1,0 +1,17 @@
+
+  .main-header {
+    background-color: rgb(66, 66, 66);
+    color: white;
+    text-transform: capitalize;
+    min-height: 80px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    justify-content: center;
+  }  
+  
+  .main-header-text {
+    padding-top: 25px;
+    font-size: 35px;
+    letter-spacing: 7px;
+  }

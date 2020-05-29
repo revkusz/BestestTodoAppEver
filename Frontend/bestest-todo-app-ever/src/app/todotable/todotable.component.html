@@ -1,0 +1,30 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="message">
+        <th mat-header-cell *matHeaderCellDef> TODO </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.message}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.catname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef> When was it created? </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.created | date:'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="done">
+        <th mat-header-cell *matHeaderCellDef> Is it done? </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.done ? 'Yes' : 'No'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doneTime">
+        <th mat-header-cell *matHeaderCellDef> When was it done? </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.doneTime | date:'medium'}} </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
