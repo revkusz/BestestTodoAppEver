@@ -28,5 +28,9 @@ export class AuthService {
 
   logout() {
     window.localStorage.removeItem('todoToken');
+  };
+
+  isLoggedIn() {
+    return !!window.localStorage.getItem('todoToken');
   }
 }

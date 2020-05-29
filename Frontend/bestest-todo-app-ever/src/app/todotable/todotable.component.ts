@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/models/Todo';
 import { TodoService } from '../todo.service';
+import { EventEmitterService } from '../event-emitter.service';
 
 @Component({
   selector: 'todotable',
@@ -13,10 +14,26 @@ export class TodotableComponent implements OnInit {
 
   displayedColumns: string[] = ['message', 'category', 'created', 'done', 'doneTime'];
 
-  constructor(private ts: TodoService) {
+  constructor(private ts: TodoService, private eventEmitterService: EventEmitterService) {
    }
 
   ngOnInit(): void {
+    if (this.eventEmitterService.getSubsVar === undefined) {
+      this.eventEmitterService.getSubsVar = this.eventEmitterService.
+      invoketGetTodo.subscribe(() => {
+        this.getData();
+      });
+    }
+
+    if (this.eventEmitterService.clearSubsVar === undefined) {
+      this.eventEmitterService.clearSubsVar = this.eventEmitterService.
+      invokeClearTodo.subscribe(() => {
+        this.clearData();
+      })
+    }
+  };
+
+  getData() {
     this.ts.getUserTodos().subscribe(data => {
       this.dataSource = data.map(todo => {
         let asd: Todo;
@@ -33,5 +50,9 @@ export class TodotableComponent implements OnInit {
       })
     },
     err => console.log(err));
-  }
+  };
+
+  clearData() {
+    this.dataSource = [];
+  };
 }

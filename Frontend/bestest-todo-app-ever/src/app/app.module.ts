@@ -10,6 +10,7 @@ import { MainheaderComponent } from './mainheader/mainheader.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginbuttonComponent } from './loginbutton/loginbutton.component';
 import { FormsModule } from '@angular/forms';
+import { EventEmitterService } from './event-emitter.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [EventEmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

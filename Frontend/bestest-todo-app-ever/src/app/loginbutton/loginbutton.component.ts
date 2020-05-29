@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth.service';
+import { EventEmitterService } from '../event-emitter.service';
 
 @Component({
   selector: 'loginbutton',
@@ -15,12 +16,16 @@ export class LoginbuttonComponent implements OnInit {
   loggedIn: boolean;
   buttonText: string;
 
-  constructor(private modalService: NgbModal, private loginService: AuthService) {
+  constructor(private modalService: NgbModal, private loginService: AuthService, private eventEmitterService: EventEmitterService) {
     this.loggedIn = !!localStorage.getItem('todoToken');
     this.buttonText = this.loggedIn ? 'Logout' : 'Login';
   }
 
   open(content) {
+    this.loginFailed = false;
+    this.username = '';
+    this.password = '';
+
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
@@ -30,12 +35,10 @@ export class LoginbuttonComponent implements OnInit {
   doLoginAction() {
     const token = btoa(`${this.username}:${this.password}`);
 
-    this.loginFailed = false;
-    this.username = '';
-    this.password = '';
-
     this.loginService.login(this.username, token).subscribe(data => {
+      localStorage.setItem('todoUsername', this.username);
       localStorage.setItem('todoToken', token);
+      this.eventEmitterService.onInvokeGetTodo();
     });
   }
 
@@ -44,8 +47,8 @@ export class LoginbuttonComponent implements OnInit {
     setTimeout(() => {
       if (!localStorage.getItem('todoToken')) {
         this.loginFailed = true;
-        this.buttonText = 'Logout';
       } else {
+        this.buttonText = 'Logout';
         this.modalService.dismissAll();
       }
     }, 200);
@@ -53,6 +56,7 @@ export class LoginbuttonComponent implements OnInit {
 
   doLogoutAction() {
     this.loginService.logout();
+    this.eventEmitterService.onInvokeClearTodo();
     this.buttonText = 'Login';
   }
 
