@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Todo } from 'src/models/Todo';
 import { TodoService } from '../todo.service';
 import { EventEmitterService } from '../event-emitter.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'todotable',
@@ -14,8 +15,16 @@ export class TodotableComponent implements OnInit {
 
   displayedColumns: string[] = ['message', 'category', 'created', 'done', 'doneTime'];
 
-  constructor(private ts: TodoService, private eventEmitterService: EventEmitterService) {
-   }
+  @ViewChild('content') content: ElementRef;
+
+  message: string;
+  category: string;
+  created: Date;
+  done: boolean
+  doneTime: Date;
+
+  constructor(private ts: TodoService, private eventEmitterService: EventEmitterService, private modalService: NgbModal) {
+  }
 
   ngOnInit(): void {
     const token = localStorage.getItem('todoToken');
@@ -51,7 +60,8 @@ export class TodotableComponent implements OnInit {
           done: todo.done,
           catname: todo.category.name,
           catcolor: todo.category.color,
-          doneTime: todo.doneTime
+          doneTime: todo.doneTime,
+          catId: todo.category.id
         }
 
         return temp;
@@ -63,4 +73,29 @@ export class TodotableComponent implements OnInit {
   clearData() {
     this.dataSource = [];
   };
+
+  onRowClick(row: Todo) {
+    this.message = row.message;
+    this.doneTime = row.doneTime;
+    this.done = row.done;
+    this.category = row.catId;
+    this.created = row.created;
+
+    this.open(this.content);
+  };
+    
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  };
+
+  clearAndDismiss() {
+    this.message = '';
+    this.doneTime = null;
+    this.done = undefined;
+    this.category = '';
+    this.created = null;
+
+    this.modalService.dismissAll();
+  }
+  
 }
