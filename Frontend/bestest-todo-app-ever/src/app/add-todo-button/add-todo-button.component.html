@@ -1,0 +1,31 @@
+<div class="add-todo-button-div">
+    <button [hidden]="isHidden()" class="add-todo-button" (click)="open(content)" mat-button>Add new TODO</button>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h1>
+        Add new TODO
+      </h1>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>TODO: </label>
+            <div class="modal-field">
+                <input [(ngModel)]="todoMessage" name="todoMessage" class="modal-field"/>
+            </div>
+            <mat-form-field class="modal-field">
+              <mat-label>Category:</mat-label>
+              <select (change)="onSelectChange($event)" matNativeControl>
+                <option *ngFor="let cat of categories"  [value]="cat.id">{{cat.name}}</option>
+              </select>
+            </mat-form-field>
+        </div>
+        <button [disabled]="!todoMessage" (click)="postTodo()">Login</button>
+      </form>
+    </div>
+</ng-template>

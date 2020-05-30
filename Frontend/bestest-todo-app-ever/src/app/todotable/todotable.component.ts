@@ -18,6 +18,12 @@ export class TodotableComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    const token = localStorage.getItem('todoToken');
+
+    if (token) {
+      this.getData();
+    }
+
     if (this.eventEmitterService.getSubsVar === undefined) {
       this.eventEmitterService.getSubsVar = this.eventEmitterService.
       invoketGetTodo.subscribe(() => {
@@ -34,10 +40,12 @@ export class TodotableComponent implements OnInit {
   };
 
   getData() {
-    this.ts.getUserTodos().subscribe(data => {
+    const token = localStorage.getItem('todoToken');
+    const username = localStorage.getItem('todoUsername');
+    this.ts.getUserTodos(username, token).subscribe(data => {
       this.dataSource = data.map(todo => {
-        let asd: Todo;
-        asd = {
+        let temp: Todo;
+        temp = {
           message: todo.message,
           created: todo.created,
           done: todo.done,
@@ -46,7 +54,7 @@ export class TodotableComponent implements OnInit {
           doneTime: todo.doneTime
         }
 
-        return asd;
+        return temp;
       })
     },
     err => console.log(err));

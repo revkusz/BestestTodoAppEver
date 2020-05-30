@@ -17,8 +17,8 @@ export class AuthService {
   constructor(private http: HttpClient) { };
 
   login(username: string, token: string) {
-
     return this.http.get<Todo[]>(`${this.url}todo/all/${username}`, {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
       Authorization: `Basic ${token}`,
       observe: 'response',
       response: 'json'
@@ -32,5 +32,13 @@ export class AuthService {
 
   isLoggedIn() {
     return !!window.localStorage.getItem('todoToken');
-  }
+  };
+
+  getUserName() {
+    return window.localStorage.getItem('todoUsername');
+  };
+
+  getToken() {
+    return window.localStorage.getItem('todoToken');
+  };
 }

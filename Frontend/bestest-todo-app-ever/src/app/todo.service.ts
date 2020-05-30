@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Todo } from 'src/models/Todo';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +8,26 @@ import { catchError } from 'rxjs/operators';
 export class TodoService {
   url = 'http://localhost:8080/todo';
 
-  headerData = {
-    username: 'sari',
-    password: 'asdvagyol12',
-    Authorization: 'Basic c2FyaTphc2R2YWd5b2wxMg=='
-  }
-
   constructor(private http: HttpClient) { }
 
-  getUserTodos () {
-    return this.http.get<any[]>(this.url + '/all/sari', {
-      headers: new HttpHeaders(this.headerData)
+  getUserTodos (username: string, token:string) {
+    return this.http.get<any[]>(this.url + `/all/${username}`, {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${token}`
+      })
     });
-  }
+  };
+
+  postTodo (username: string, token:string, todoMessage: string, catId: string) {
+    return this.http.post(this.url, {
+      message: todoMessage,
+      done: false,
+      categor_id: catId,
+      owner_id: username  
+    }, {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${token}`
+      })
+    })
+  };
 }

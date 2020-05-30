@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 200;
+    line-height: 1.5;
+}
+
+select.mat-input-element {
+    background-clip: content-box;
+}
