@@ -20,6 +20,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("category")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;

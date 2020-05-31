@@ -67,7 +67,7 @@ Táblák:
 
 `GET user/changePass?username={username}&newpass={newPassword}` Admin lekérdezés valamely user jelszavát változtatja meg
 
-`POST user/create` Admin lekérdezés melyel létre lehet hozni egy új felhasználót Body: JSON: Username: "username", password: "password"
+`POST user/create` Admin lekérdezés melyel létre lehet hozni egy új felhasználót Body: JSON: username: "username", password: "password"
 
 `user/enable/{username}?enabled={Boolean}` admin lekérdezés kikapcsolni illetve bekapcsolni lehet egy felhasználot
 ## Role végpontok

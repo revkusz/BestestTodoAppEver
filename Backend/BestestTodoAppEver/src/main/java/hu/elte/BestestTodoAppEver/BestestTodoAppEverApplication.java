@@ -53,6 +53,7 @@ public class BestestTodoAppEverApplication {
 		userService.registerUser("test_user","test_user");
 		userService.addRoles(userRepository.findById("revkusz").get(), Arrays.asList(Roles.ADMIN));
 		userService.addRoles(userRepository.findById("sari").get(), Arrays.asList(Roles.ADMIN));
+		userService.addRoles(userRepository.findById("GOD").get(), Arrays.asList(Roles.ADMIN));
 
 		//Categories
 		Category categoryImportant = new Category();

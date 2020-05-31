@@ -17,9 +17,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Date;
 
 @RestController
 @RequestMapping("todo")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TodoItemController {
 
     @Autowired
@@ -88,6 +90,9 @@ public class TodoItemController {
         newTodoItem.setId(id);
         newTodoItem.setCategory(categoryRepository.findById(todoItem.getCategor_id()).get());
         newTodoItem.setDeleted(false);
+        if (!newTodoItem.getDone() && todoItem.isDone()) {
+            newTodoItem.setDoneTime(new Date());
+        }
         newTodoItem.setDone(todoItem.isDone());
         newTodoItem.setMessage(todoItem.getMessage());
         newTodoItem.setOwner(userRepository.findById(todoItem.getOwner_id()).get());
@@ -105,6 +110,7 @@ public class TodoItemController {
         TodoItem newTodoItem = new TodoItem();
         newTodoItem.setCategory(categoryRepository.findById(todoItem.getCategor_id()).get());
         newTodoItem.setDeleted(false);
+
         newTodoItem.setDone(todoItem.isDone());
         newTodoItem.setMessage(todoItem.getMessage());
         newTodoItem.setOwner(userRepository.findById(todoItem.getOwner_id()).get());

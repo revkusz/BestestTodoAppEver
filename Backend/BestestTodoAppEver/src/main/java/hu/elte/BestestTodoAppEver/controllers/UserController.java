@@ -27,6 +27,7 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("user")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
 
