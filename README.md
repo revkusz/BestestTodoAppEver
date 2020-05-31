@@ -107,13 +107,48 @@ Táblák:
 
 `PUT todo/{id}` frissit egy adott id ju elemet body lásd  todoItemDto
 
+# Felhasználói dokumentáció
+
+## Alkalmazás futtatása
+
+Miután a fentiek alapján a backendet elindítottuk, a .../BestestTodoAppEver/Frontend/bestest-todo-app-ever mappában állva a következő paranccsal tudjuk elindítani a frontendet:
+`ng serve`
+
+Miután ez megtörtént, tetszőleges böngészővel a `http://localhost:4200/` címre látogatva tekinthetjük meg az alkalmazást.
+
+## Regisztráció és belépés
+
+Az alkalmazás jobb felső sarkában lévő Register gombra kattintva megjelenik egy modal Username és Password mezőkkel
+Ezek kitöltése után a modalon belül lévő Register gombra kattintva létrejön a felhasználó a kívánt belépési adatokkal, kivéve ha a kért felhasználónév már foglalt.
+
+Ezek után az alkalmazás bal felső sarkában lévő Login gombra kattintva be tud jelentkezni a felhasználó a megfelelő Username és Password páros megadásával
+
+## TODO lista
+
+Belépést követően megjelenik a felhasználóhoz tartozó TODO-k listája. A felhasználó megtekintheti a TODO rövid leírását, kategóriáját, mikor készítette, kész van-e, és ha igen, mikor lett kész.
+
+A lista egyes elemeire kattintva egy modal jelenik meg. Ezen belül a felhasználó tudja szerkeszteni a TODO leírását, valamint készre tudja állítani, majd döntését véglegesíteni a 'Save' gombbal. Ezután a friss listát láthatja.
+
+Amennyiben a felhasználó meggondolja magát, a modal jobb felső sarkában lévő X-szel, az ESC gomb lenyomásával, vagy a modalból való kikattintással elküldheti azt.
+
+## Új TODO létrehozása
+
+Bejelentkezés után a Register gomb helyére az Add TODO gomb kerül. Ezt megnyomva egy modal jelenik meg.
+
+A modalban lévő mezők: TODO leírása, kategóriája.
+
+Amint a felhasználó megadta a TODO leírását és választott egy kategóriát, az Add gomb kattinthatóvá válik, és kattintásra létre is jön az új TODO.
+A kattintás után a felhasználó a friss listát látja.
+
+Amennyiben a felhasználó meggondolja magát, a modal jobb felső sarkában lévő X-szel, az ESC gomb lenyomásával, vagy a modalból való kikattintással elküldheti azt.
+
+## Kilépés
+
+Az alkalmazás bal felső sarkában lévő Logout gombra kattintva a felhasználó kijelentkezhet, az Add TODO gomb helyére visszakerül a Register gomb, és a Logout gombot felváltja a Login gomb.
+
 # Known issues
 - Az olyan lekérdezésenkél melyeknél owner is van tehát user is van társítve a username hez a jelszó hashel ve is küldésre kerül
 - Vannak olyan entitások melyeket csak logikailag lehet törölni. ezek jelenleg fizikailag kerülnek törélse.
 - Általában a lekérdezések még nem dto kat adnak vissza hanem teljes adatbázis entitásokat ez még változni fog.
-
-
-
-
 
 
