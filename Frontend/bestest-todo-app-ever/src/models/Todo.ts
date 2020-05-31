@@ -6,4 +6,5 @@ export class Todo {
     catname: string;
     catcolor: string;
     catId: string;
+    todoId: string;
 };

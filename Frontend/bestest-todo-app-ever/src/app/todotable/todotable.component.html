@@ -32,6 +32,9 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
+      <h1>
+        Edit TODO
+      </h1>
       <button type="button" class="close" aria-label="Close" (click)="clearAndDismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -41,11 +44,19 @@
         <div class="form-group">
           <label>TODO:</label>
           <div class="input-group">
-            <input [(ngModel)]="message" name="message" class="modal-field"/>
+            <input [(ngModel)]="message" [readOnly]="done" name="message" class="modal-field"/>
           </div>
-          <div class="input-group">
-            <input type="checkbox" [(ngModel)]="done" name="done"/>Is it done?
+          <div style="padding-top: 20px;" class="input-group">
+            Is it done?<input style="margin: 2px 0 0 10px;" type="checkbox" [disabled]="done" [(ngModel)]="done" name="done"/>
           </div>
+          <div style="padding-top: 20px;" class="input-group">
+            <div>This todo was created: {{created | date:'medium'}}</div>
+          </div>
+          <div style="padding-top: 20px;" class="input-group">
+            <div>{{!origDone ? 'This TODO is not yet finished' : 'This todo was finished at ' + doneTime}}</div>
+          </div>
+          <button [disabled]="done || origDone === done && origMessage === message"  (click)="sendEdit()">Edit</button>
+          <div>{{origDone ? 'TODOs cannot be edited once they are set to done' : ''}}</div>
         </div>
       </form>
     </div>

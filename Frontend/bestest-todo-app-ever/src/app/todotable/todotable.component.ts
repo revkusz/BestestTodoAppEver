@@ -22,6 +22,12 @@ export class TodotableComponent implements OnInit {
   created: Date;
   done: boolean
   doneTime: Date;
+  todoId: string;
+  catId: string;
+
+  origMessage: string;
+  origDone: boolean;
+  origCatId: string;
 
   constructor(private ts: TodoService, private eventEmitterService: EventEmitterService, private modalService: NgbModal) {
   }
@@ -61,7 +67,8 @@ export class TodotableComponent implements OnInit {
           catname: todo.category.name,
           catcolor: todo.category.color,
           doneTime: todo.doneTime,
-          catId: todo.category.id
+          catId: todo.category.id,
+          todoId: todo.id
         }
 
         return temp;
@@ -80,6 +87,12 @@ export class TodotableComponent implements OnInit {
     this.done = row.done;
     this.category = row.catId;
     this.created = row.created;
+    this.todoId = row.todoId;
+    this.catId = row.catId;
+
+    this.origMessage = row.message;
+    this.origDone = row.done;
+    this.origCatId = row.catId;
 
     this.open(this.content);
   };
@@ -96,6 +109,16 @@ export class TodotableComponent implements OnInit {
     this.created = null;
 
     this.modalService.dismissAll();
-  }
-  
+  };
+
+  sendEdit() {
+    const token = localStorage.getItem('todoToken');
+    const username = localStorage.getItem('todoUsername');
+
+    this.ts.editTodo(username, token, this.todoId, this.message, this.done, this.catId).subscribe(data => {
+      this.eventEmitterService.onInvokeGetTodo();
+    });
+
+    this.modalService.dismissAll();
+  };
 }

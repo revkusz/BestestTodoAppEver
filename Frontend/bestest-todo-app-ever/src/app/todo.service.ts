@@ -30,4 +30,17 @@ export class TodoService {
       })
     })
   };
+
+  editTodo (username: string, token: string, todoId: string, newMessage: string, newDone: boolean, catId) {
+    return this.http.put(this.url + `/${todoId}`, {
+      owner_id: username,
+      categor_id: catId,
+      done: newDone,
+      message: newMessage
+    }, {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${token}`
+      })
+    });
+  };
 }

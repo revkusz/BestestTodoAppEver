@@ -26,7 +26,7 @@
                 <input [(ngModel)]="password" name="password"/>
             </div>
         </div>
-        <button [disabled]="!(!!username && !!password)" (click)="loginCombined()">Login</button>
+        <button [disabled]="!username || !password" (click)="loginCombined()">Login</button>
       </form>
     </div>
 </ng-template>
