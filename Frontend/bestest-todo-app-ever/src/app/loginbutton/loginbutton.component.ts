@@ -39,6 +39,7 @@ export class LoginbuttonComponent implements OnInit {
       localStorage.setItem('todoUsername', this.username);
       localStorage.setItem('todoToken', token);
       this.eventEmitterService.onInvokeGetTodo();
+      this.eventEmitterService.onInvokeSetButtonText();
       this.modalService.dismissAll();
       this.buttonText = 'Logout';
     });
@@ -56,6 +57,7 @@ export class LoginbuttonComponent implements OnInit {
   doLogoutAction() {
     this.loginService.logout();
     this.eventEmitterService.onInvokeClearTodo();
+    this.eventEmitterService.onInvokeSetButtonText();
     this.buttonText = 'Login';
   }
 

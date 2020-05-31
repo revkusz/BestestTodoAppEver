@@ -16,36 +16,49 @@ export class AddTodoButtonComponent implements OnInit {
   todoMessage: string;
   category: string;
 
+  username: string;
+  password: string;
+
+  buttonText: string;
+
   categories: Category[];
 
   constructor(private modalService: NgbModal, private categoryService: CategoryService, 
               private authService: AuthService, private todoService: TodoService,
-              private eventEmitter: EventEmitterService) { }
+              private eventEmitter: EventEmitterService) {
+                this.setButtonText();
+
+                this.eventEmitter.buttonTextSubsVar = this.eventEmitter.invokeSetButtonText.subscribe(() => {
+                  this.setButtonText();
+                })
+               }
 
   ngOnInit(): void {
   };
   
-  open(content) {
-    if (!this.authService.isLoggedIn()) {
-      return;
-    }
+  open(content: any) {
+    if (this.authService.isLoggedIn()) {
 
-    const username = this.authService.getUserName();
-    const token = this.authService.getToken();
-
-    this.categoryService.getCategories(username, token).subscribe(data => {
-      this.categories = data.map(cat => {
-        return {
-          name: cat.name,
-          color: cat.color,
-          id: cat.id
-        }
+      const username = this.authService.getUserName();
+      const token = this.authService.getToken();
+  
+      this.categoryService.getCategories(username, token).subscribe(data => {
+        this.categories = data.map(cat => {
+          return {
+            name: cat.name,
+            color: cat.color,
+            id: cat.id
+          }
+        });
+  
+        this.category = this.categories[0].id;
+  
       });
+    } else {
 
-      this.category = this.categories[0].id;
-
-      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
-    });
+    }
+    
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   };
 
   isHidden() {
@@ -68,5 +81,19 @@ export class AddTodoButtonComponent implements OnInit {
       this.eventEmitter.onInvokeGetTodo();
       this.modalService.dismissAll();
     });
+  };
+
+  confirmReg() {
+    this.authService.reg(this.username, this.password).subscribe(() => {
+      this.modalService.dismissAll();
+    });
+  };
+
+  setButtonText() {
+    this.buttonText = this.authService.isLoggedIn() ? 'Add new TODO' : 'Register';
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   };
 }

@@ -26,6 +26,20 @@ export class AuthService {
     });
   };
 
+  reg(username: string, password: string) {
+    const hack = 'Basic R09EOk1JTkVLPw==';
+    //We need this bcs backend is a lazy piece of wonderful person
+
+    return this.http.post(`${this.url}user/create`, {
+      username,
+      password
+    }, {
+      headers: new HttpHeaders({
+        Authorization: hack
+      })
+    });
+  };
+
   logout() {
     window.localStorage.removeItem('todoToken');
   };

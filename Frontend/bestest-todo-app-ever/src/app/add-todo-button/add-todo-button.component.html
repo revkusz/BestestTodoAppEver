@@ -1,5 +1,5 @@
 <div class="add-todo-button-div">
-    <button [hidden]="isHidden()" class="add-todo-button" (click)="open(content)" mat-button>Add new TODO</button>
+    <button class="add-todo-button" (click)="isLoggedIn() ? open(content) : open(register)" mat-button>{{buttonText}}</button>
 </div>
 
 <ng-template #content let-modal>
@@ -28,4 +28,33 @@
         <button [disabled]="!todoMessage" (click)="postTodo()">Add</button>
       </form>
     </div>
+</ng-template>
+
+
+<ng-template #register let-modal>
+  <div class="modal-header">
+    <h1>
+      Register
+    </h1>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div>
+      </div>
+      <div class="form-group">
+        <label>Username: </label>
+          <div class="modal-field">
+              <input [(ngModel)]="username" name="username" class="modal-field"/>
+          </div>
+          <label>Password: </label>
+          <div class="input-group">
+              <input [(ngModel)]="password" name="password"/>
+          </div>
+      </div>
+      <button [disabled]="!username || !password" (click)="confirmReg()">Register</button>
+    </form>
+  </div>
 </ng-template>
